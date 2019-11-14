@@ -3,13 +3,18 @@ package models;
 public class DisplayLcd {
 
 	private int size;
-	private int numero;
+	private int numeros;
 	private int columnas;
 	private int filas;
 	
-	public DisplayLcd(int size, int numero) {
+	public DisplayLcd() {
+	   this.size = 0;
+	   this.numeros = 0;
+	}
+
+	public DisplayLcd(int size, int numeros) {
 		this.size = size;
-		this.numero = numero;
+		this.numeros = numeros;
 		setColumnas();
 		setFilas();
 	}
@@ -22,12 +27,12 @@ public class DisplayLcd {
 		this.size = size;
 	}
 
-	public int getNumero() {
-		return numero;
+	public int getNumeros() {
+		return numeros;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setNumeros(int numeros) {
+		this.numeros = numeros;
 	}
 
 	public int getColumnas() {

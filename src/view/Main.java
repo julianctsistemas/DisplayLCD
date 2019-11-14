@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import controller.DisplayLcdController;
 import models.DisplayLcd;
 import utils.Utils;
 
@@ -34,21 +35,34 @@ public class Main {
 					throw new IllegalArgumentException("La entrada " + partes[1] + " no es un número");
 				}
 				
-				int size = Integer.parseInt(partes[0]);				
-				if (size < 1 || size > 10) {
-					throw new IllegalArgumentException("El tamaño " + size + " debe estar dentro del rango del 1 al 10.");
+				int size = Integer.parseInt(partes[0]);	
+				int numeros = Integer.parseInt(partes[1]);
+				if (size == 0 && numeros != 0) {
+					throw new IllegalArgumentException("El tamanio " + size + " debe estar dentro del rango del 1 al 10.");
 				}
-				
-				int numero = Integer.parseInt(partes[1]);
-				
-				DisplayLcd lcd = new DisplayLcd(size,numero);
-				listaDisplayLcd.add(lcd);
+				if (size != 0) {
+					if (size < 1 || size > 10) {
+						throw new IllegalArgumentException("El tamanio " + size + " debe estar dentro del rango del 1 al 10.");
+					}	
+					
+					
+					DisplayLcd lcd = new DisplayLcd(size,numeros);
+					listaDisplayLcd.add(lcd);
+				}
 
 			} else {
 				throw new IllegalArgumentException("La entrada " + entrada + " no contiene (,)");
 			}
 
 		} while (!entrada.equals("0,0"));
+		
+		DisplayLcdController controller = new DisplayLcdController();
+		
+		for(DisplayLcd displayLcd : listaDisplayLcd) {
+			controller.setDisplay(displayLcd);
+			controller.iniciarProceso();
+			System.out.println();
+		}
 
 	}
 
